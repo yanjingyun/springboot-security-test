@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.yjy</groupId>
-	<artifactId>springboot-security-test3</artifactId>
+	<artifactId>springboot-security-test4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springboot-security-test3</name>
+	<name>springboot-security-test4</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
