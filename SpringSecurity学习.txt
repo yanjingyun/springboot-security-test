@@ -1,0 +1,42 @@
+
+获取登录错误提示：
+	<div th:if="${param.error}">
+		<span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+	</div>
+
+获取登录用户：
+	<h1>Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+
+HttpSecurity类说明：
+	详情：http://www.spring4all.com/article/419
+	headers()	--将安全标头添加到响应
+	cors()	--配置跨域资源共享CORS
+	sessionManagement()	--允许配置会话管理
+	authorizeRequests()	--开启HttpServletRequest限制访问
+	exceptionHandling()	--允许配置错误处理
+	formLogin()	--支持基于表单的身份验证
+	oauth2Login()	--根据外部OAuth 2.0或OpenID Connect 1.0提供程序配置身份验证
+	httpBasic()	--配置 Http Basic 验证
+	addFilterAt()	--在指定的Filter类的位置添加过滤器
+
+AuthenticationManagerBuilder类说明：
+	用于创建一个AuthenticationManager，让我能够轻松的实现内存验证、LADP验证、基于JDBC的验证、添加UserDetailsService、添加AuthenticationProvider。
+
+
+过滤器链
+	详情：http://www.spring4all.com/article/422
+	自定义Filter(建议继承GenericFilterBean)：
+		
+
+
+
+
+
+
+
+
+
+
+
+

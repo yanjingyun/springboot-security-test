@@ -12,7 +12,26 @@ springboot-security-test3： 测试自定义密码匹配器
 	2.在SpringSecurity配置类中，声明该Bean对象
 
 springboot-security-test4： 添加验证码
+	添加自定义Filter，并在SpringSecurity配置类引入。
 	1.测试前端能正常返回验证码
 	2.SpringSecurity添加验证码：创建验证码过滤器类、在SpringSecurity配置类中引入该过滤器
 		http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class)
 
+------------------分割线------------------
+http://www.spring4all.com/article/428 	--spring4all系列教程
+
+springboot-security-test5 ：测试初引入SpringSecurity
+	自定义登录页面
+	基于内存配置用户
+
+Spring Security 实现QQ登录（未实现）
+	详情：http://www.spring4all.com/article/424
+
+
+
+
+
+
+spring-security-jwt-demo ：测试springboot整合security和jwt
+	数据库信息：db_security_jwt.sql
+	测试实例：security-jwt测试.postman_collection.json

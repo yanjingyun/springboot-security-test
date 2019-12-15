@@ -49,6 +49,7 @@ public class VerifyCodeFilter extends OncePerRequestFilter implements Initializi
 				validate(request);
 			} catch (ImageCodeException e) {
 				// 验证码错误则抛出异常
+				request.getSession().setAttribute("SPRING_SECURITY_LAST_EXCEPTION", e);
 				request.getRequestDispatcher("/authentication/login?error").forward(request, response);
 				return;
 			}
