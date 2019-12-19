@@ -1,4 +1,14 @@
 
+security系列文章：
+	https://felord.cn/categories/spring-security/page/2/
+
+认证/授权
+
+
+RBAC模型
+
+
+
 获取登录错误提示：
 	<div th:if="${param.error}">
 		<span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
@@ -24,12 +34,54 @@ AuthenticationManagerBuilder类说明：
 	用于创建一个AuthenticationManager，让我能够轻松的实现内存验证、LADP验证、基于JDBC的验证、添加UserDetailsService、添加AuthenticationProvider。
 
 
+UserDetailsService接口：
+	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+	该接口是提供用户信息的核心接口。该接口实现仅仅存储用户的信息，后续会将该接口的用户信息(UserDetails)封装到认证对象(Authentication)中。
+	UserDetails实现类：org.springframework.security.core.userdetails.User
+
+
+UserDetailsServiceAutoConfiguration 描述：
+	该类只初始化了一个UserDetailsManager类型的Bean。
+	该类初始化了一个名为InMemoryUserDetailsManager的内存用户管理器(UserDetailsManager)。
+
+	UserDetailsManager接口描述：继承UserDetailsService接口，并负责对安全用户实体抽象UserDetails的增删改查操作。
+	问题：自定义UserDetailsManager Bean是不是可以实现我们需要的用户管理逻辑？
+	实际上UserDetailsManager的相关操作是交给UserDetailsRepository来做。数据库管理用户：只需要将UserDetailRepository中users属性替代为抽象的Dao接口即可。
+
+
+密码编码器(PasswordEncoder):
+	提供两个功能：匹配验证、密码编码
+委托密码编码器(DelegatingPasswordEncoder)
+	委托(Delegate)：甲方交给乙方的活，乙方手里又很多渠道，但是乙方光想赚差价又不想干活，所以乙方根据一些规则又把活委托给了别人。
+密码器静态工厂(PasswordEncoderFactories)
+	只提供了初始化DelegatingPasswordEncoder的方法。默认采用了bcrypt进行编码。详情参考createDelegatingPasswordEncoder()方法。
+SpringSecurity加载PasswordEncoder规则：
+	--详情参考WebSecurityConfigurerAdapter类的getPasswordEncoder()方法
+	描述：若能从SpringIOC容器中获取PasswordEncoder的Bean就用该Bean作为编码器，若不能则使用DelegatingPasswordEncoder，默认bcrypt方式。
+bcrypt编码算法：
+	bcrypt使用的是布鲁斯·施内尔在1993年发布的Blowfish加密算法。bcrypt算法将salt随机并混入最终加密后的密码，验证时也无需单独提供之前的salt，从而无需单独处理salt问题。
+	特点：
+		1、非常慢。这大大提高了彩虹表破解的难度。
+		2、同样的密码每次使用bcrypt编码，密码暗文都是不一样的。
+
+
 过滤器链
 	详情：http://www.spring4all.com/article/422
 	自定义Filter(建议继承GenericFilterBean)：
-		
+
+过滤器
+UsernamePasswordAuthenticationFilter
+	参考：spring-security-jwt-demo项目的JWTAuthenticationFilter
+	--用于根据用户的用户名和密码进行登录验证。
+
+	attemptAuthentication() --验证用户身份
+	successfulAuthentication() --用户身份验证成功后调用的方法
+	unsuccessfulAuthentication() --用户身份验证失败后调用的方法
 
 
+BasicAuthenticationFilter
+	参考：spring-security-jwt-demo项目的JWTAuthorizationFilter
+	--用于处理身份认证后才能访问的资源，它会检查http请求是否存在带有正确令牌的Authorization标头并验证token的有效性。
 
 
 

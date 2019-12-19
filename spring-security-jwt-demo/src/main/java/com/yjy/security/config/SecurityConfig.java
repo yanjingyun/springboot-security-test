@@ -35,9 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors() // 解决跨域问题
-				.and().csrf().disable() // 禁用CSRF保护（创建非浏览器客户端使用的服务需要禁用CSRF保护）
-				.authorizeRequests() // 开启请求权限配置
+		http.csrf().disable() // 禁用CSRF保护（创建非浏览器客户端使用的服务需要禁用CSRF保护）
+				.cors() // 解决跨域问题
+				.and().authorizeRequests() // 开启请求权限配置
 				.antMatchers(HttpMethod.POST, SecurityConstants.AUTH_LOGIN_URL).permitAll()
 				// 指定路径下的资源需要验证了的用户才能访问
 				.antMatchers("/api/**").authenticated().antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
