@@ -1,37 +1,57 @@
-springboot-security-test1: è‡ªå®šä¹‰ç™»å½•é¡µé¢
-	ç¼–å†™SpringSecurityé…ç½®ç±»ï¼Œå¹¶ç»§æ‰¿WebSecurityConfigurerAdapterç±»ï¼š1ã€é…ç½®ç”¨æˆ· 2ã€é…ç½®è·¯å¾„
-	æµ‹è¯•ï¼šæµè§ˆå™¨è¾“å…¥http://localhost:8080/currentUserï¼Œä¼šè‡ªåŠ¨è·³è½¬åˆ°http://localhost:8080/authentication/login å†è¾“å…¥è´¦å·å¯†ç åï¼Œä¼šé‡æ–°è·³è½¬åˆ°åŸæ¥çš„åœ°å€ã€‚
+springboot-security-test1: ×Ô¶¨ÒåµÇÂ¼Ò³Ãæ
+	±àĞ´SpringSecurityÅäÖÃÀà£¬²¢¼Ì³ĞWebSecurityConfigurerAdapterÀà£º1¡¢ÅäÖÃÓÃ»§ 2¡¢ÅäÖÃÂ·¾¶
+	²âÊÔ£ºä¯ÀÀÆ÷ÊäÈëhttp://localhost:8080/currentUser£¬»á×Ô¶¯Ìø×ªµ½http://localhost:8080/authentication/login ÔÙÊäÈëÕËºÅÃÜÂëºó£¬»áÖØĞÂÌø×ªµ½Ô­À´µÄµØÖ·¡£
 
-springboot-security-test2ï¼š æ¨¡æ‹Ÿæ•°æ®åº“åŠ è½½ç”¨æˆ·
-	1.æ·»åŠ UserDetailsServiceå®ç°ç±»ï¼Œå¹¶é‡å†™loadUserByUsername(username)æ–¹æ³•
-	2.åœ¨SpringSecurityé…ç½®ç±»ä¸­ï¼Œé‡å†™configure(auth)æ–¹æ³•
-	æµ‹è¯•ï¼šæµè§ˆå™¨è¾“å…¥http://localhost:8080/currentUserï¼Œä¼šè‡ªåŠ¨è·³è½¬åˆ°http://localhost:8080/authentication/login å†è¾“å…¥è´¦å·å¯†ç åï¼Œä¼šé‡æ–°è·³è½¬åˆ°åŸæ¥çš„åœ°å€ã€‚
+springboot-security-test2£º Ä£ÄâÊı¾İ¿â¼ÓÔØÓÃ»§
+	1.Ìí¼ÓUserDetailsServiceÊµÏÖÀà£¬²¢ÖØĞ´loadUserByUsername(username)·½·¨
+	2.ÔÚSpringSecurityÅäÖÃÀàÖĞ£¬ÖØĞ´configure(auth)·½·¨
+	²âÊÔ£ºä¯ÀÀÆ÷ÊäÈëhttp://localhost:8080/currentUser£¬»á×Ô¶¯Ìø×ªµ½http://localhost:8080/authentication/login ÔÙÊäÈëÕËºÅÃÜÂëºó£¬»áÖØĞÂÌø×ªµ½Ô­À´µÄµØÖ·¡£
 
-springboot-security-test3ï¼š æµ‹è¯•è‡ªå®šä¹‰å¯†ç åŒ¹é…å™¨
-	1.åˆ›å»ºMyPasswordEncoderç±»ï¼Œå®ç°PasswordEncoderæ¥å£
-	2.åœ¨SpringSecurityé…ç½®ç±»ä¸­ï¼Œå£°æ˜è¯¥Beanå¯¹è±¡
+springboot-security-test3£º ²âÊÔ×Ô¶¨ÒåÃÜÂëÆ¥ÅäÆ÷
+	1.´´½¨MyPasswordEncoderÀà£¬ÊµÏÖPasswordEncoder½Ó¿Ú
+	2.ÔÚSpringSecurityÅäÖÃÀàÖĞ£¬ÉùÃ÷¸ÃBean¶ÔÏó
 
-springboot-security-test4ï¼š æ·»åŠ éªŒè¯ç 
-	æ·»åŠ è‡ªå®šä¹‰Filterï¼Œå¹¶åœ¨SpringSecurityé…ç½®ç±»å¼•å…¥ã€‚
-	1.æµ‹è¯•å‰ç«¯èƒ½æ­£å¸¸è¿”å›éªŒè¯ç 
-	2.SpringSecurityæ·»åŠ éªŒè¯ç ï¼šåˆ›å»ºéªŒè¯ç è¿‡æ»¤å™¨ç±»ã€åœ¨SpringSecurityé…ç½®ç±»ä¸­å¼•å…¥è¯¥è¿‡æ»¤å™¨
+springboot-security-test4£º Ìí¼ÓÑéÖ¤Âë
+	Ìí¼Ó×Ô¶¨ÒåFilter£¬²¢ÔÚSpringSecurityÅäÖÃÀàÒıÈë¡£
+	1.²âÊÔÇ°¶ËÄÜÕı³£·µ»ØÑéÖ¤Âë
+	2.SpringSecurityÌí¼ÓÑéÖ¤Âë£º´´½¨ÑéÖ¤Âë¹ıÂËÆ÷Àà¡¢ÔÚSpringSecurityÅäÖÃÀàÖĞÒıÈë¸Ã¹ıÂËÆ÷
 		http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class)
 
-------------------åˆ†å‰²çº¿------------------
-http://www.spring4all.com/article/428 	--spring4allç³»åˆ—æ•™ç¨‹
+------------------·Ö¸îÏß------------------
+http://www.spring4all.com/article/428 	--spring4allÏµÁĞ½Ì³Ì
 
-springboot-security-test5 ï¼šæµ‹è¯•åˆå¼•å…¥SpringSecurity
-	è‡ªå®šä¹‰ç™»å½•é¡µé¢
-	åŸºäºå†…å­˜é…ç½®ç”¨æˆ·
+springboot-security-test5 £º²âÊÔ³õÒıÈëSpringSecurity
+	×Ô¶¨ÒåµÇÂ¼Ò³Ãæ
+	»ùÓÚÄÚ´æÅäÖÃÓÃ»§
 
-Spring Security å®ç°QQç™»å½•ï¼ˆæœªå®ç°ï¼‰
-	è¯¦æƒ…ï¼šhttp://www.spring4all.com/article/424
-
-
+Spring Security ÊµÏÖQQµÇÂ¼£¨Î´ÊµÏÖ£©
+	ÏêÇé£ºhttp://www.spring4all.com/article/424
 
 
 
 
-spring-security-jwt-demo ï¼šæµ‹è¯•springbootæ•´åˆsecurityå’Œjwt
-	æ•°æ®åº“ä¿¡æ¯ï¼šdb_security_jwt.sql
-	æµ‹è¯•å®ä¾‹ï¼šsecurity-jwtæµ‹è¯•.postman_collection.json
+
+
+spring-security-jwt-demo £º²âÊÔspringbootÕûºÏsecurityºÍjwt
+	Êı¾İ¿âĞÅÏ¢£ºdb_security_jwt.sql
+	²âÊÔÊµÀı£ºsecurity-jwt²âÊÔ.postman_collection.json
+	
+	--¸½¼Ó¹¦ÄÜ£º
+	¼¯³ÉÑéÖ¤ÂëÑéÖ¤ÊµÏÖË¼Â·£º
+		-1£©Éú³ÉÑéÖ¤ÂëÊ±£¬Ëæ»úÉú³ÉÑéÖ¤Âëkey£¬²¢½«keyºÍÑéÖ¤Âë´æÈëredis£¬½«keyºÍÑéÖ¤Âë·µ»Ø¸øÇ°¶Ë£»
+		-2£©Ç°¶ËµÇÂ¼Ê±£¬½«¸½´øÑéÖ¤Âëkey£¬ºóÌ¨Í¨¹ıkeyÄÃµ½Éú³ÉµÄÑéÖ¤Âëºó£¬ÓëÓÃ»§ÊäÈëµÄÑéÖ¤Âë¶Ô±È¡£
+			--¼Ì³ĞUsernamePasswordAuthenticationFilterÀà£¬²¢ÔÚattemptAuthentication()·½·¨ÖĞÍê³ÉÑéÖ¤ÂëĞ£Ñé¡¢ÓÃ»§Ğ£Ñé
+
+	Ç°¶ËÃÜÂë¼ÓÃÜ´«Êä(Ê¹ÓÃRSA·Ç¶Ô³Æ¼ÓÃÜ)£º
+		-1£©ºó¶ËÊ¹ÓÃRSAÉú³ÉÃÜÔ¿ºÍ¹«Ô¿£¬²¢´æÈëredis(key=¹«Ô¿£¬value=ÃÜÔ¿)£¬½«¹«Ô¿·µ»Ø¸øÇ°¶Ë£»
+		-2£©Ç°¶ËµÇÂ¼Ê±£¬Ê¹ÓÃ¹«Ô¿¶Ôpassword¼ÓÃÜ£¬²¢½«¹«Ô¿ºÍ¼ÓÃÜºóµÄpassword´«¸øºó¶Ë£»
+		-3£©ºó¶ËÍ¨¹ı¹«Ô¿´ÓredisÖĞÈ¡³ö¶ÔÓ¦ÃÜÔ¿£¬¶Ôpassword½øĞĞ½âÃÜ¡£
+
+
+
+
+
+
+
+
+

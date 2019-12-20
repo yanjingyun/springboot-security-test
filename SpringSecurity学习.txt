@@ -2,7 +2,37 @@
 security系列文章：
 	https://felord.cn/categories/spring-security/page/2/
 
-认证/授权
+核心配置类:WebSecurityConfigurerAdapter
+
+认证/授权/注销(都有后续处理类xxHandler)
+	--1、认证
+	参考UsernamePasswordAuthenticationFilter类的attemptAuthentication方法(貌似就只有这个方法是public)
+	自定义认证：继承UsernamePasswordAuthenticationFilter类，仿照attemptAuthentication方法做登录认证
+		this.getAuthenticationManager().authenticate(authRequest);
+	附：attemptAuthentication方法实际在AbstractAuthenticationProcessingFilter的doFilter方法中执行。抛出异常会调用unsuccessfulAuthentication方法，这时候用到AuthenticationFailureHandler实现类。执行成功时会调用successfulAuthentication方法，这时候用来AuthenticationSuccessHandler实现类。因此登录失败或成功时的后续操作都可以参考xxHandler实现类。
+
+	// 在SpringSecuritConfig中加入认证filter
+	SecurityLoginFilter securityLoginFilter = new SecurityLoginFilter(authenticationManager());
+	securityLoginFilter.setAuthenticationFailureHandler(securityAuthenticationFailureHandler);
+	securityLoginFilter.setAuthenticationSuccessHandler(securityAuthenticationSuccessHandler);
+	http.add(securityLoginFilter);
+
+	--2、授权：
+	参考BasicAuthenticationFilter类的doFilterInternal方法。
+	自定义授权：继承BasicAuthenticationFilter类，仿照doFilterInternal方法。对jwt进行认证后得到user，进而得到该user对应的权限，设值回SpringSecurity上下文中。
+		SecurityContextHolder.getContext().setAuthentication(authResult);
+
+	// 在SpringSecuritConfig中加入授权filter
+	SecurityAuthenticationFilter securityAuthenticationFilter = new SecurityAuthenticationFilter(authenticationManager());
+	http.add(securityAuthenticationFilter);
+
+	--3、注销
+	参考LogoutFilter类的doFilter方法。注销成功会调用LogoutSuccessHandler的onLogoutSuccess方法进行后续处理。
+	自定义注销后续处理：继承LogoutSuccessHandler类，在onLogoutSuccess方法中进行自定义后续处理。
+		清除redis的user信息和用户权限信息
+
+
+
 
 
 RBAC模型
