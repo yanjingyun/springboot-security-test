@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 import com.yjy.sso.dao.SysUserDao;
 import com.yjy.sso.entity.SysUser;
 
-/**
- * @author ChengJianSheng
- * @date 2019-02-12
- */
 @Service
 public class UserService {
 

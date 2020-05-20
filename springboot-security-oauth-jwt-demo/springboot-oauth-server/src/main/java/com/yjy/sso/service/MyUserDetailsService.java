@@ -3,6 +3,8 @@ package com.yjy.sso.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +19,10 @@ import com.yjy.sso.domain.MyUser;
 import com.yjy.sso.entity.SysPermission;
 import com.yjy.sso.entity.SysUser;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class MyUserDetailsService implements UserDetailsService {
+	
+	private static final Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
 
     @Autowired
     private PasswordEncoder passwordEncoder;
