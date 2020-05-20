@@ -49,7 +49,9 @@ spring-security-jwt-demo ：测试springboot整合security和jwt
 
 
 
-
+springboot-security-oauth-jwt-demo：
+	整合SpringSecurity,OAuth2,JWT相关技术。包括1个服务端和2个客户端。
+	
 
 
 

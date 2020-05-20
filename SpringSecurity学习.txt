@@ -32,6 +32,8 @@ security系列文章：
 		清除redis的user信息和用户权限信息
 
 
+AuthenticationEntryPoint说明：
+	在ExceptionTranslationFilter中使用到AuthenticationEntryPoint，当ExceptionTranslationFilter捕获到AuthenticationException或AccessDeniedException异常时，就会调用AuthenticationEntryPoint的commence方法。
 
 
 
@@ -114,9 +116,12 @@ BasicAuthenticationFilter
 	--用于处理身份认证后才能访问的资源，它会检查http请求是否存在带有正确令牌的Authorization标头并验证token的有效性。
 
 
+Spring Security 解析(六) —— 基于JWT的单点登陆(SSO)开发及原理解析：
+	https://segmentfault.com/u/xiangfeidechengxuyuan  --spring security整个各项技术
+	https://segmentfault.com/a/1190000020398550
 
-
-
+jwt：
+	不能主动注销
 
 
 
