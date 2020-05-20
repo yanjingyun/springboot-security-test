@@ -22,7 +22,7 @@ import com.yjy.sso.entity.SysUser;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 	
-	private static final Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private PasswordEncoder passwordEncoder;

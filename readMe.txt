@@ -57,10 +57,10 @@ springboot-security-oauth-jwt-demo：
 		输入：http://localhost:8083/orderSystem/order/list，也会跳转到登录页
 		2.在输入user1/user1后，进入memberSystem系统，切换orderSystem系统无需重新登录
 		3.测试权限：user1用户能跳转到detail页面，不能跳转到test页面
-	流程图参考：SpringSecurity验证.png 和 认证中心SSO.png
 	
 
-
+spring-security-oauth-test： 测试Spring Sucurity OAuth2相关
+	所有相关子项目
 
 
 
