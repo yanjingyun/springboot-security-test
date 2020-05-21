@@ -5,6 +5,19 @@
 	一个模块出现问题，很可能导致整个系统崩溃
 	多个团队开发同时
 
+
+OAuth协议：
+	主要解决授权问题，该协议定义了四种授权方式：授权码方式、密码授权方式、简化授权方式、客户端授权方式
+	
+	授权服务器主要是提供用户认证、授权、颁发令牌等功能，而资源服务器主要是保护用户资源。授权服务器先给合法的用户颁发令牌，用户再使用获得的令牌到资源服务器申请受保护的用户资源，而资源服务器接收到用户的请求后，会先验证用户的令牌，只有令牌合法才会把用户请求的资源返回给用户，否则拒绝返回。
+	
+	资源服务器验证用户的令牌可以有多种，既可以到授权服务器处进行验证，也可以自己验证。只有授权服务器使用非对称加密令牌或者使用对称加密令牌的方式，且资源服务器知道授权服务器用于加密令牌的密钥所对应的公钥时，资源服务器才能自己验证令牌。
+
+
+OAuth2授权服务器 && OAuth2资源服务器
+
+
+
 AuthorizationServerConfigurerAdapter类如下：
 	public class AuthorizationServerConfigurerAdapter implements AuthorizationServerConfigurer {
 
@@ -45,7 +58,6 @@ SSO与OAuth2描述：
 退出：
 	退出即清空所有SSO客户端的会话，即所有端点的Session失效。本文采用jwt，因此撤销token不太容易。
 	本例采用在退出时先退出业务服务器，成功以再回调认证服务器。存在问题：需要主动依次调用各个业务服务器的lgout方法。
-
 
 
 *********************************实战*********************************
@@ -93,3 +105,28 @@ spring-security-oauth-test1-server： 测试Spring Security OAuth2
 		2、客户端2获取用户信息
 			http://localhost:8080/client2/oauth/me
 		附：客户端2理论上是另一项目，跟认证中心分开，目前跟认证中心写在一起（模拟客户端2）
+
+
+
+
+spring-security-oauth-test1-server： 测试Spring Security OAuth2
+	相关链接：https://blog.csdn.net/weixin_44516305/article/details/88886839
+	修改jwt存储token
+
+	测试：
+	1.用户认证：浏览器访问以下地址会自动跳转到用户认证页面
+	  http://localhost:8080/oauth/authorize?client_id=client_1&response_type=code
+	  说明：
+	    1、参数redirect_uri可选，但必须是该client_id中配置的uri，否则报错。
+	    2、系统无该client_id时会报错：error="invalid_client"
+
+
+	2.获取令牌：使用postman访问以下地址到授权服务器获取访问令牌和刷新令牌:
+	  http://localhost:8080/oauth/token?grant_type=authorization_code&client_id=client_1&client_secret=secret&code=h0MILI
+	  说明：
+	    1、必须是POST请求；grant_type必须为authorization_code；
+	    2、grant_type、client_id、client_secret必填，且与配置类中保持一致；
+	    3、client_id和client_secret也可以使用Basic认证的方式传递给授权服务器。
+	3.获取资源：
+	  使用访问令牌到资源服务器获取用户资源，访问令牌必须是Bear认证的方式传递给资源服务器。
+	  http://localhost:8080/getMyResource
