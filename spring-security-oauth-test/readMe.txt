@@ -130,3 +130,13 @@ spring-security-oauth-test1-server： 测试Spring Security OAuth2
 	3.获取资源：
 	  使用访问令牌到资源服务器获取用户资源，访问令牌必须是Bear认证的方式传递给资源服务器。
 	  http://localhost:8080/getMyResource
+
+
+spring-security-oauth-test3：授权码方式进行认证和授权
+	PostMan测试《spring-security-oauth-test3测试.postman_collection.json》
+	关键技术：Springboot, Spring-security, Spring-security-oauth2。
+
+	本系统存在两个子系统：授权服务器和资源服务器。访问资源服务器的资源时需要去授权服务器拿到access_token，且该access_token有该资源的权限。
+
+	用Oauth2技术对访问受保护的资源的客户端进行认证与授权：提供一个简化版，用户、token数据保存在内存中，用户与客户端的认证授权服务、资源服务，都是在同一个工程中。现实项目中，技术架构通常上将用户与客户端的认证授权服务设计在一个子系统（工程）中，而资源服务设计为另一个子系统（工程）。
+
