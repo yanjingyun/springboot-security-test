@@ -28,10 +28,6 @@ Spring Security 实现QQ登录（未实现）
 	详情：http://www.spring4all.com/article/424
 
 
-
-
-
-
 spring-security-jwt-demo ：测试springboot整合security和jwt
 	数据库信息：db_security_jwt.sql
 	测试实例：security-jwt测试.postman_collection.json
@@ -57,6 +53,9 @@ springboot-security-oauth-jwt-demo：
 		输入：http://localhost:8083/orderSystem/order/list，也会跳转到登录页
 		2.在输入user1/user1后，进入memberSystem系统，切换orderSystem系统无需重新登录
 		3.测试权限：user1用户能跳转到detail页面，不能跳转到test页面
+	退出：
+		退出即清空所有SSO客户端的会话，即所有端点的Session失效。本文采用jwt，因此撤销token不太容易。
+		本例采用在退出时先退出业务服务器，成功以再回调认证服务器。存在问题：需要主动依次调用各个业务服务器的lgout方法。
 
 spring-security-oauth-test目录：
 	所有相关子项目，从头开始测试Spring Sucurity OAuth2相关
