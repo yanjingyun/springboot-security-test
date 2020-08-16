@@ -1,0 +1,70 @@
+OAuth协议参与实体：
+	RO(resource owner)：资源所有者，对资源具有授权能力的人
+	RS(resource server)：资源服务器，它存储资源，并处理对资源的访问请求
+	Client：第三方应用，它获得RO的授权后便可以去访问RO的资源
+	AS(authorization server)：授权服务器，它认证RO的身份，为RO提供授权审批流程，并最终颁发授权令牌(AccessToken)。
+	注：AS与RS的功能可以由同一个服务器来提供服务
+
+资源服务器：
+	-1）accessToken和client_id的校验
+	-2）token校验通过后要对token访问权限做好限制
+授权服务器：
+	-1）接收第三方应用的申请，维护client_id
+	-2）提供登录页面，做用户、密码鉴权
+	-3）授权码生成和验证
+	-4）token的生成
+	-5）client_id、token维护。一般clientId入库，token入内存
+
+OAuth协议的基本流程：
+	--前提：OAuth2中的资源服务器和授权服务器都是属于资源所有方，即服务提供方，第三方接入需要先与鉴权服务器申请合作获取客户编码。
+	-1）Client请求RO的授权，请求中一般包含：要访问的资源路径、操作系统、Client的身份等信息
+	-2）RO批准授权，并将“授权证据”发送给Client。至于RO如何批准是协议外的事。典型的做法是，AS提供授权审批界面，让RO显式批准。
+	-3）Client向AS请求“访问令牌AccessToken”。此时，Client需向AS提供RO的“授权证据”，以及Client自己身份的凭证。
+	-4）AS验证通过后，向Client返回“访问令牌”。访问令牌也有多种类型，若为bearer类型，那么谁持有访问令牌，谁就能访问资源。
+	-5）Client携带“访问令牌”访问RS上的资源。在令牌的有效期内，Client可以多次携带令牌去访问资源。
+	-6）RS验证令牌的有效性，比如是否伪造、是否越权、是否过期，验证通过后，才能提供服务。
+
+
+实例(微信关联LinkedIn应用)：
+	相关链接：https://www.cnblogs.com/loveis715/p/4491456.html
+--前提：微信先在LinkedIn中申请合作，得到client_id
+1.申请授权码(登录)：
+	https://{linkedin_oauth_url}/authorize?response_type=code&client_id=client_id&redirect_uri=callback_url&scope=read&state=xxx
+	参数说明：
+		client_id：表示第三方在鉴权服务器所对应的应用Id
+		redirect_uri：表示第三方在得到了用户授权后，将重定向到的地址
+		scope：表示第三方所申请的权限
+		response_type：表示第三方所请求的Authorization Grant的类型
+		state：表示第三方的状态		
+	返回：授权码(authorization_code)
+	一旦成功转向了该URL，那么将显示LinkedIn登录界面并赋予权限的页面。如果第三方用户成功登录并允许第三方访问这些信息，将返回授权码，并重定向到redirect_uri的地址。
+	重定向地址时还会附带授权码：
+		--微信通过authorization_code得知用户所勾选的权限
+		https://{redirect_uri}?code=authorization_code
+2.通过授权码换取访问令牌：
+	--微信通过授权码换取资源所需要的访问令牌(AccessToken)
+	https://{linkedin_oauth_url}/token?client_id=client_id&code=authorization_code&grant_type=authorization_code&redirect_uri=callback_url
+	参数说明：
+		client_id：表示第三方在鉴权服务器所对应的应用Id
+		code：刚从LinkedIn获取的授权码
+		grant_type：用来表示授权码类型
+		redirect_uri：表示成功获取访问令牌后后，将重定向到的地址
+	返回：令牌(AccessToken/AuthorizationGrant)
+	在应用成功地得到了访问资源的令牌之后，LinkedIn将返回一个包含了资源访问令牌的响应。同时浏览器将被重定向到redirect_uri所标示的位置。
+3.通过令牌访问资源：
+	参数：client_id、accessToken
+
+
+sso、cas、shiro、OAuth区分：
+	...
+
+OAuth与SSO区别：
+	SSO是为了解决一个用户在鉴权服务器登陆过一次以后，可以在任何应用中畅通无阻，一次登陆，多系统访问，操作用户是实打实的该应用的官方用户，用户的权限和分域以鉴权服务器的存储为准。
+	OAuth2.0解决的是通过令牌获取某个系统的操作权限，因为有clientId的标识，一次登陆只能对该系统生效，操作用户属于第三方系统而非鉴权系统的官方用户，授权权限鉴权中心可以做限制。
+
+
+
+
+shiro和oauth、cas它们之间的关系？
+	cas和oauth是解决单点登录的组件，shiro主要负责权限安全方面的工作，所以功能点不一致。但往往需要单点登录和权限控制一起来使用，所以就有cas+shiro和oauth+shiro组合。如oauth负责多后台统一登录认证，shiro负责给登录用户赋予不同的访问权限。
+	token一般是客户端登录后服务器生成的令牌，每次访问服务端会进行校验，一般保存到内存或其它介质；若web服务器有几台负载，则需要session共享，可以使用session保存。
