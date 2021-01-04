@@ -1,64 +1,64 @@
-springboot-security-test1: ×Ô¶¨ÒåµÇÂ¼Ò³Ãæ
-	±àĞ´SpringSecurityÅäÖÃÀà£¬²¢¼Ì³ĞWebSecurityConfigurerAdapterÀà£º1¡¢ÅäÖÃÓÃ»§ 2¡¢ÅäÖÃÂ·¾¶
-	²âÊÔ£ºä¯ÀÀÆ÷ÊäÈëhttp://localhost:8080/currentUser£¬»á×Ô¶¯Ìø×ªµ½http://localhost:8080/authentication/login ÔÙÊäÈëÕËºÅÃÜÂëºó£¬»áÖØĞÂÌø×ªµ½Ô­À´µÄµØÖ·¡£
+springboot-security-test1: è‡ªå®šä¹‰ç™»å½•é¡µé¢
+	ç¼–å†™SpringSecurityé…ç½®ç±»ï¼Œå¹¶ç»§æ‰¿WebSecurityConfigurerAdapterç±»ï¼š1ã€é…ç½®ç”¨æˆ· 2ã€é…ç½®è·¯å¾„
+	æµ‹è¯•ï¼šæµè§ˆå™¨è¾“å…¥http://localhost:8080/currentUserï¼Œä¼šè‡ªåŠ¨è·³è½¬åˆ°http://localhost:8080/authentication/login å†è¾“å…¥è´¦å·å¯†ç åï¼Œä¼šé‡æ–°è·³è½¬åˆ°åŸæ¥çš„åœ°å€ã€‚
 
-springboot-security-test2£º Ä£ÄâÊı¾İ¿â¼ÓÔØÓÃ»§
-	1.Ìí¼ÓUserDetailsServiceÊµÏÖÀà£¬²¢ÖØĞ´loadUserByUsername(username)·½·¨
-	2.ÔÚSpringSecurityÅäÖÃÀàÖĞ£¬ÖØĞ´configure(auth)·½·¨
-	²âÊÔ£ºä¯ÀÀÆ÷ÊäÈëhttp://localhost:8080/currentUser£¬»á×Ô¶¯Ìø×ªµ½http://localhost:8080/authentication/login ÔÙÊäÈëÕËºÅÃÜÂëºó£¬»áÖØĞÂÌø×ªµ½Ô­À´µÄµØÖ·¡£
+springboot-security-test2ï¼š æ¨¡æ‹Ÿæ•°æ®åº“åŠ è½½ç”¨æˆ·
+	1.æ·»åŠ UserDetailsServiceå®ç°ç±»ï¼Œå¹¶é‡å†™loadUserByUsername(username)æ–¹æ³•
+	2.åœ¨SpringSecurityé…ç½®ç±»ä¸­ï¼Œé‡å†™configure(auth)æ–¹æ³•
+	æµ‹è¯•ï¼šæµè§ˆå™¨è¾“å…¥http://localhost:8080/currentUserï¼Œä¼šè‡ªåŠ¨è·³è½¬åˆ°http://localhost:8080/authentication/login å†è¾“å…¥è´¦å·å¯†ç åï¼Œä¼šé‡æ–°è·³è½¬åˆ°åŸæ¥çš„åœ°å€ã€‚
 
-springboot-security-test3£º ²âÊÔ×Ô¶¨ÒåÃÜÂëÆ¥ÅäÆ÷
-	1.´´½¨MyPasswordEncoderÀà£¬ÊµÏÖPasswordEncoder½Ó¿Ú
-	2.ÔÚSpringSecurityÅäÖÃÀàÖĞ£¬ÉùÃ÷¸ÃBean¶ÔÏó
+springboot-security-test3ï¼š æµ‹è¯•è‡ªå®šä¹‰å¯†ç åŒ¹é…å™¨
+	1.åˆ›å»ºMyPasswordEncoderç±»ï¼Œå®ç°PasswordEncoderæ¥å£
+	2.åœ¨SpringSecurityé…ç½®ç±»ä¸­ï¼Œå£°æ˜è¯¥Beanå¯¹è±¡
 
-springboot-security-test4£º Ìí¼ÓÑéÖ¤Âë
-	Ìí¼Ó×Ô¶¨ÒåFilter£¬²¢ÔÚSpringSecurityÅäÖÃÀàÒıÈë¡£
-	1.²âÊÔÇ°¶ËÄÜÕı³£·µ»ØÑéÖ¤Âë
-	2.SpringSecurityÌí¼ÓÑéÖ¤Âë£º´´½¨ÑéÖ¤Âë¹ıÂËÆ÷Àà¡¢ÔÚSpringSecurityÅäÖÃÀàÖĞÒıÈë¸Ã¹ıÂËÆ÷
+springboot-security-test4ï¼š æ·»åŠ éªŒè¯ç 
+	æ·»åŠ è‡ªå®šä¹‰Filterï¼Œå¹¶åœ¨SpringSecurityé…ç½®ç±»å¼•å…¥ã€‚
+	1.æµ‹è¯•å‰ç«¯èƒ½æ­£å¸¸è¿”å›éªŒè¯ç 
+	2.SpringSecurityæ·»åŠ éªŒè¯ç ï¼šåˆ›å»ºéªŒè¯ç è¿‡æ»¤å™¨ç±»ã€åœ¨SpringSecurityé…ç½®ç±»ä¸­å¼•å…¥è¯¥è¿‡æ»¤å™¨
 		http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class)
 
-------------------·Ö¸îÏß------------------
-http://www.spring4all.com/article/428 	--spring4allÏµÁĞ½Ì³Ì
+------------------åˆ†å‰²çº¿------------------
+http://www.spring4all.com/article/428 	--spring4allç³»åˆ—æ•™ç¨‹
 
-springboot-security-test5 £º²âÊÔ³õÒıÈëSpringSecurity
-	×Ô¶¨ÒåµÇÂ¼Ò³Ãæ
-	»ùÓÚÄÚ´æÅäÖÃÓÃ»§
+springboot-security-test5 ï¼šæµ‹è¯•åˆå¼•å…¥SpringSecurity
+	è‡ªå®šä¹‰ç™»å½•é¡µé¢
+	åŸºäºå†…å­˜é…ç½®ç”¨æˆ·
 
-Spring Security ÊµÏÖQQµÇÂ¼£¨Î´ÊµÏÖ£©
-	ÏêÇé£ºhttp://www.spring4all.com/article/424
+Spring Security å®ç°QQç™»å½•ï¼ˆæœªå®ç°ï¼‰
+	è¯¦æƒ…ï¼šhttp://www.spring4all.com/article/424
 
 
-spring-security-jwt-demo £º²âÊÔspringbootÕûºÏsecurityºÍjwt
-	Êı¾İ¿âĞÅÏ¢£ºdb_security_jwt.sql
-	²âÊÔÊµÀı£ºsecurity-jwt²âÊÔ.postman_collection.json
+spring-security-jwt-demo ï¼šæµ‹è¯•springbootæ•´åˆsecurityå’Œjwt
+	æ•°æ®åº“ä¿¡æ¯ï¼šdb_security_jwt.sql
+	æµ‹è¯•å®ä¾‹ï¼šsecurity-jwtæµ‹è¯•.postman_collection.json
 	
-	--¸½¼Ó¹¦ÄÜ£º
-	¼¯³ÉÑéÖ¤ÂëÑéÖ¤ÊµÏÖË¼Â·£º
-		-1£©Éú³ÉÑéÖ¤ÂëÊ±£¬Ëæ»úÉú³ÉÑéÖ¤Âëkey£¬²¢½«keyºÍÑéÖ¤Âë´æÈëredis£¬½«keyºÍÑéÖ¤Âë·µ»Ø¸øÇ°¶Ë£»
-		-2£©Ç°¶ËµÇÂ¼Ê±£¬½«¸½´øÑéÖ¤Âëkey£¬ºóÌ¨Í¨¹ıkeyÄÃµ½Éú³ÉµÄÑéÖ¤Âëºó£¬ÓëÓÃ»§ÊäÈëµÄÑéÖ¤Âë¶Ô±È¡£
-			--¼Ì³ĞUsernamePasswordAuthenticationFilterÀà£¬²¢ÔÚattemptAuthentication()·½·¨ÖĞÍê³ÉÑéÖ¤ÂëĞ£Ñé¡¢ÓÃ»§Ğ£Ñé
+	--é™„åŠ åŠŸèƒ½ï¼š
+	é›†æˆéªŒè¯ç éªŒè¯å®ç°æ€è·¯ï¼š
+		-1ï¼‰ç”ŸæˆéªŒè¯ç æ—¶ï¼Œéšæœºç”ŸæˆéªŒè¯ç keyï¼Œå¹¶å°†keyå’ŒéªŒè¯ç å­˜å…¥redisï¼Œå°†keyå’ŒéªŒè¯ç è¿”å›ç»™å‰ç«¯ï¼›
+		-2ï¼‰å‰ç«¯ç™»å½•æ—¶ï¼Œå°†é™„å¸¦éªŒè¯ç keyï¼Œåå°é€šè¿‡keyæ‹¿åˆ°ç”Ÿæˆçš„éªŒè¯ç åï¼Œä¸ç”¨æˆ·è¾“å…¥çš„éªŒè¯ç å¯¹æ¯”ã€‚
+			--ç»§æ‰¿UsernamePasswordAuthenticationFilterç±»ï¼Œå¹¶åœ¨attemptAuthentication()æ–¹æ³•ä¸­å®ŒæˆéªŒè¯ç æ ¡éªŒã€ç”¨æˆ·æ ¡éªŒ
 
-	Ç°¶ËÃÜÂë¼ÓÃÜ´«Êä(Ê¹ÓÃRSA·Ç¶Ô³Æ¼ÓÃÜ)£º
-		-1£©ºó¶ËÊ¹ÓÃRSAÉú³ÉÃÜÔ¿ºÍ¹«Ô¿£¬²¢´æÈëredis(key=¹«Ô¿£¬value=ÃÜÔ¿)£¬½«¹«Ô¿·µ»Ø¸øÇ°¶Ë£»
-		-2£©Ç°¶ËµÇÂ¼Ê±£¬Ê¹ÓÃ¹«Ô¿¶Ôpassword¼ÓÃÜ£¬²¢½«¹«Ô¿ºÍ¼ÓÃÜºóµÄpassword´«¸øºó¶Ë£»
-		-3£©ºó¶ËÍ¨¹ı¹«Ô¿´ÓredisÖĞÈ¡³ö¶ÔÓ¦ÃÜÔ¿£¬¶Ôpassword½øĞĞ½âÃÜ¡£
+	å‰ç«¯å¯†ç åŠ å¯†ä¼ è¾“(ä½¿ç”¨RSAéå¯¹ç§°åŠ å¯†)ï¼š
+		-1ï¼‰åç«¯ä½¿ç”¨RSAç”Ÿæˆå¯†é’¥å’Œå…¬é’¥ï¼Œå¹¶å­˜å…¥redis(key=å…¬é’¥ï¼Œvalue=å¯†é’¥)ï¼Œå°†å…¬é’¥è¿”å›ç»™å‰ç«¯ï¼›
+		-2ï¼‰å‰ç«¯ç™»å½•æ—¶ï¼Œä½¿ç”¨å…¬é’¥å¯¹passwordåŠ å¯†ï¼Œå¹¶å°†å…¬é’¥å’ŒåŠ å¯†åçš„passwordä¼ ç»™åç«¯ï¼›
+		-3ï¼‰åç«¯é€šè¿‡å…¬é’¥ä»redisä¸­å–å‡ºå¯¹åº”å¯†é’¥ï¼Œå¯¹passwordè¿›è¡Œè§£å¯†ã€‚
 
 
 
-springboot-security-oauth-jwt-demo£º
-	ÕûºÏSpringSecurity,OAuth2,JWTÏà¹Ø¼¼Êõ¡£°üÀ¨1¸ö·şÎñ¶ËºÍ2¸ö¿Í»§¶Ë¡£
-	Á÷³ÌËµÃ÷£º
-		1.ÏÈÆô¶¯server£¬ÔÙÆô¶¯Á½¸öclient
-		ÊäÈë£ºhttp://localhost:8082/memberSystem/member/list£¬»áÌø×ªµ½µÇÂ¼Ò³
-		ÊäÈë£ºhttp://localhost:8083/orderSystem/order/list£¬Ò²»áÌø×ªµ½µÇÂ¼Ò³
-		2.ÔÚÊäÈëuser1/user1ºó£¬½øÈëmemberSystemÏµÍ³£¬ÇĞ»»orderSystemÏµÍ³ÎŞĞèÖØĞÂµÇÂ¼
-		3.²âÊÔÈ¨ÏŞ£ºuser1ÓÃ»§ÄÜÌø×ªµ½detailÒ³Ãæ£¬²»ÄÜÌø×ªµ½testÒ³Ãæ
-	ÍË³ö£º
-		ÍË³ö¼´Çå¿ÕËùÓĞSSO¿Í»§¶ËµÄ»á»°£¬¼´ËùÓĞ¶ËµãµÄSessionÊ§Ğ§¡£±¾ÎÄ²ÉÓÃjwt£¬Òò´Ë³·Ïútoken²»Ì«ÈİÒ×¡£
-		±¾Àı²ÉÓÃÔÚÍË³öÊ±ÏÈÍË³öÒµÎñ·şÎñÆ÷£¬³É¹¦ÒÔÔÙ»Øµ÷ÈÏÖ¤·şÎñÆ÷¡£´æÔÚÎÊÌâ£ºĞèÒªÖ÷¶¯ÒÀ´Îµ÷ÓÃ¸÷¸öÒµÎñ·şÎñÆ÷µÄlgout·½·¨¡£
+springboot-security-oauth-jwt-demoï¼š
+	æ•´åˆSpringSecurity,OAuth2,JWTç›¸å…³æŠ€æœ¯ã€‚åŒ…æ‹¬1ä¸ªæœåŠ¡ç«¯å’Œ2ä¸ªå®¢æˆ·ç«¯ã€‚
+	æµç¨‹è¯´æ˜ï¼š
+		1.å…ˆå¯åŠ¨serverï¼Œå†å¯åŠ¨ä¸¤ä¸ªclient
+		è¾“å…¥ï¼šhttp://localhost:8082/memberSystem/member/listï¼Œä¼šè·³è½¬åˆ°ç™»å½•é¡µ
+		è¾“å…¥ï¼šhttp://localhost:8083/orderSystem/order/listï¼Œä¹Ÿä¼šè·³è½¬åˆ°ç™»å½•é¡µ
+		2.åœ¨è¾“å…¥user1/user1åï¼Œè¿›å…¥memberSystemç³»ç»Ÿï¼Œåˆ‡æ¢orderSystemç³»ç»Ÿæ— éœ€é‡æ–°ç™»å½•
+		3.æµ‹è¯•æƒé™ï¼šuser1ç”¨æˆ·èƒ½è·³è½¬åˆ°detailé¡µé¢ï¼Œä¸èƒ½è·³è½¬åˆ°testé¡µé¢
+	é€€å‡ºï¼š
+		é€€å‡ºå³æ¸…ç©ºæ‰€æœ‰SSOå®¢æˆ·ç«¯çš„ä¼šè¯ï¼Œå³æ‰€æœ‰ç«¯ç‚¹çš„Sessionå¤±æ•ˆã€‚æœ¬æ–‡é‡‡ç”¨jwtï¼Œå› æ­¤æ’¤é”€tokenä¸å¤ªå®¹æ˜“ã€‚
+		æœ¬ä¾‹é‡‡ç”¨åœ¨é€€å‡ºæ—¶å…ˆé€€å‡ºä¸šåŠ¡æœåŠ¡å™¨ï¼ŒæˆåŠŸä»¥å†å›è°ƒè®¤è¯æœåŠ¡å™¨ã€‚å­˜åœ¨é—®é¢˜ï¼šéœ€è¦ä¸»åŠ¨ä¾æ¬¡è°ƒç”¨å„ä¸ªä¸šåŠ¡æœåŠ¡å™¨çš„lgoutæ–¹æ³•ã€‚
 
-spring-security-oauth-testÄ¿Â¼£º
-	ËùÓĞÏà¹Ø×ÓÏîÄ¿£¬´ÓÍ·¿ªÊ¼²âÊÔSpring Sucurity OAuth2Ïà¹Ø
+spring-security-oauth-testç›®å½•ï¼š
+	æ‰€æœ‰ç›¸å…³å­é¡¹ç›®ï¼Œä»å¤´å¼€å§‹æµ‹è¯•Spring Sucurity OAuth2ç›¸å…³
 	
 
 
