@@ -45,7 +45,11 @@ spring-security-jwt-demo ：测试springboot整合security和jwt
 
 
 
-springboot-security-oauth-jwt-demo：
+spring-security-oauth-test目录：
+	所有相关子项目，从头开始测试Spring Security OAuth2相关
+
+
+springboot-security-oauth-jwt-demo：Spring Security OAuth2实战
 	整合SpringSecurity,OAuth2,JWT相关技术。包括1个服务端和2个客户端。
 	流程说明：
 		1.先启动server，再启动两个client
@@ -56,10 +60,6 @@ springboot-security-oauth-jwt-demo：
 	退出：
 		退出即清空所有SSO客户端的会话，即所有端点的Session失效。本文采用jwt，因此撤销token不太容易。
 		本例采用在退出时先退出业务服务器，成功以再回调认证服务器。存在问题：需要主动依次调用各个业务服务器的lgout方法。
-
-spring-security-oauth-test目录：
-	所有相关子项目，从头开始测试Spring Sucurity OAuth2相关
-	
 
 
 
