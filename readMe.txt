@@ -62,4 +62,7 @@ springboot-security-oauth-jwt-demo：Spring Security OAuth2实战
 		本例采用在退出时先退出业务服务器，成功以再回调认证服务器。存在问题：需要主动依次调用各个业务服务器的lgout方法。
 
 
+test-security-oauth2-master： spring cloud 整合oauth2
+	别人的项目
+	测试导入postman：spring cloud 整合security oauth2.postman_collection.json
 

@@ -18,7 +18,7 @@ OAuth协议：
 	主要解决授权问题，该协议定义了四种授权方式：授权码方式、密码授权方式、简化授权方式、客户端授权方式
 	
 	授权服务器主要是提供用户认证、授权、颁发令牌等功能，而资源服务器主要是保护用户资源。授权服务器先给合法的用户颁发令牌，用户再使用获得的令牌到资源服务器申请受保护的用户资源，而资源服务器接收到用户的请求后，会先验证用户的令牌，只有令牌合法才会把用户请求的资源返回给用户，否则拒绝返回。
-	
+
 	资源服务器验证用户的令牌可以有多种，既可以到授权服务器处进行验证，也可以自己验证。只有授权服务器使用非对称加密令牌或者使用对称加密令牌的方式，且资源服务器知道授权服务器用于加密令牌的密钥所对应的公钥时，资源服务器才能自己验证令牌。
 
 
@@ -85,6 +85,7 @@ AuthorizationServerConfigurerAdapter类说明：
 		AuthorizationServerEndpointsConfiguration
 		AuthorizationServerSecurityConfiguration
 	根据@EnableAuthorizationServer注解可知，该AuthorizationServer暴露了两个Http Endpoint：
+		--开启SecurityOAuth2注解，以提供/oauth/token、/oauth/check_token、/oauth/authorize等endpoint
 		/oauth/authorize //实现类AuthorizationEndpoint
 		/oauth/token	//实现类TokenEndpoint
 

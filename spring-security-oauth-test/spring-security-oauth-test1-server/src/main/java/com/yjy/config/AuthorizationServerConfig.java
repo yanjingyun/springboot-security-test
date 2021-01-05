@@ -18,8 +18,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	// 注入 WebSecurityConfiguration 中配置的 BCryptPasswordEncoder
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	// 配置客户端系统client
+
+	/**
+	 * 配置客户端系统信息client
+	 * @param clients
+	 * @throws Exception
+	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients
@@ -36,11 +40,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.authorizedGrantTypes("client_credentials")
 			.scopes("read");
 	}
-	
+
+	/**
+	 * 配置登录用户信息
+	 * @param oauthServer
+	 * @throws Exception
+	 */
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("permitAll()").allowFormAuthenticationForClients();
-		// oauthServer.allowFormAuthenticationForClients();
 	}
 	
 	public static void main(String[] args) {
