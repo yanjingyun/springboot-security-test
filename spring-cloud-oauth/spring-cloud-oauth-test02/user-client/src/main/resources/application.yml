@@ -1,0 +1,30 @@
+server:
+  port: 6101
+  servlet:
+    context-path: /client-user
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+
+spring:
+  application:
+    name: client-user
+  redis:
+    database: 0
+    host: localhost
+    timeout: 100ms
+
+security:
+  oauth2:
+    client:
+      client-id: user-client
+      client-secret: user-secret-8888
+      user-authorization-uri: http://localhost:6001/oauth/authorize
+      access-token-uri: http://localhost:6001/oauth/token
+    resource:
+      id: user-client
+      user-info-uri: user-info
+    authorization:
+      check-token-access: http://localhost:6001/oauth/check_token

@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "7cfce0c9-22e4-4899-b77f-3ed04eda4065",
+		"name": "spring cloud 整合security oauth2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取token信息（密码模式）",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9098/oauth/token?username=user_1&password=123456&grant_type=password&scope=server&client_id=client_2&client_secret=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9098",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user_1"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "scope",
+							"value": "server"
+						},
+						{
+							"key": "client_id",
+							"value": "client_2"
+						},
+						{
+							"key": "client_secret",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token信息（密码模式，base64(clientid:secret)放head中）",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic Y2xpZW50XzI6MTIzNDU2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9098/oauth/token?username=user_1&password=123456&grant_type=password&scope=server",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9098",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user_1"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "scope",
+							"value": "server"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "访问order资源(无token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer cabc3a99-67f3-4db1-8d23-42f3a9b273a7",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8765/order/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "访问order资源(附带token)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8765/order/1?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5NjE3NDUsInVzZXJfbmFtZSI6InVzZXJfMSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiODhkZGFmNDYtNTk1Mi00NGM3LTgyNDEtMWQwZDFiNTMzNzRkIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJzZXJ2ZXIiXX0.ZZTLzRYhK4VTKBFEw5TUWSjMfONgsrdFD2jFYtZEFdo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"order",
+						"1"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5NjE3NDUsInVzZXJfbmFtZSI6InVzZXJfMSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiODhkZGFmNDYtNTk1Mi00NGM3LTgyNDEtMWQwZDFiNTMzNzRkIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJzZXJ2ZXIiXX0.ZZTLzRYhK4VTKBFEw5TUWSjMfONgsrdFD2jFYtZEFdo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "访问order资源(head添加token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5NjE3NDUsInVzZXJfbmFtZSI6InVzZXJfMSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiODhkZGFmNDYtNTk1Mi00NGM3LTgyNDEtMWQwZDFiNTMzNzRkIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJzZXJ2ZXIiXX0.ZZTLzRYhK4VTKBFEw5TUWSjMfONgsrdFD2jFYtZEFdo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8765/order/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "访问product资源(无token)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8765/product/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "访问product资源(有token)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8765/order/1?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5NjE3NDUsInVzZXJfbmFtZSI6InVzZXJfMSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiODhkZGFmNDYtNTk1Mi00NGM3LTgyNDEtMWQwZDFiNTMzNzRkIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJzZXJ2ZXIiXX0.ZZTLzRYhK4VTKBFEw5TUWSjMfONgsrdFD2jFYtZEFdo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"order",
+						"1"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5NjE3NDUsInVzZXJfbmFtZSI6InVzZXJfMSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiODhkZGFmNDYtNTk1Mi00NGM3LTgyNDEtMWQwZDFiNTMzNzRkIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJzZXJ2ZXIiXX0.ZZTLzRYhK4VTKBFEw5TUWSjMfONgsrdFD2jFYtZEFdo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户信息(head添加token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5NjE3NDUsInVzZXJfbmFtZSI6InVzZXJfMSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiODhkZGFmNDYtNTk1Mi00NGM3LTgyNDEtMWQwZDFiNTMzNzRkIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJzZXJ2ZXIiXX0.ZZTLzRYhK4VTKBFEw5TUWSjMfONgsrdFD2jFYtZEFdo",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8765/getPrinciple",
+					"host": [
+						"localhost"
+					],
+					"port": "8765",
+					"path": [
+						"getPrinciple"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

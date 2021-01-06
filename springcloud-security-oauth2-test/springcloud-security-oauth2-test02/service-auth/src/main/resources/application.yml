@@ -1,0 +1,12 @@
+server.port: 9098
+eureka.client.service-url.defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: service-auth
+  redis:
+    host: 127.0.0.1
+    database: 0
+
+logging.level.org.springframework.security: DEBUG
+

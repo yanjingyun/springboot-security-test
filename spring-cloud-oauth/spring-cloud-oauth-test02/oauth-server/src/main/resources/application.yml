@@ -1,0 +1,36 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+
+spring:
+  application:
+    name: auth-server
+  redis:
+    database: 0
+    host: localhost
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+    timeout: 100ms
+    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_cloud?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 9
+
+server:
+  port: 6001
+
+management:
+  endpoint:
+    health:
+      enabled: true
