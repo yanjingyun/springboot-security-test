@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -25,6 +26,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
     /**
 	 * 客户端配置
@@ -65,6 +69,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		endpoints.authenticationManager(this.authenticationManager).tokenStore(tokenStore());
 		// 设置令牌加强器（生成令牌时使用）
 		endpoints.tokenEnhancer(jwtAccessTokenConverter());
+
+		// 设置userDetailsService刷新token时候会用到
+		endpoints.userDetailsService(userDetailsService);
     }
     
     /**

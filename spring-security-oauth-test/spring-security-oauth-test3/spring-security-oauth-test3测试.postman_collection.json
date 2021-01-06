@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "0b1ad64e-4d24-45d5-824e-eee9be04238c",
-		"name": "spring-security-oauth-test3测",
+		"name": "spring-security-oauth-test3测试",
 		"description": "测试SpringSecurityOAuth2相关",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -304,6 +304,42 @@
 								{
 									"key": "access_token",
 									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzM0NzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsidXNlcjphZGQiXSwianRpIjoiODJkZTNkNWItMGY0Mi00YzM2LThlM2YtMTkyMzRiYmI1Y2NiIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJhbGwiXX0.lHihxWiBOQYl98LpVK2n_oBjsp5VytDWenQwvOA3euU"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "通过refresh_token刷新令牌",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50XzI6c2VjcmV0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiJlNGNkZTEwYy1mZjZkLTQ5MWUtOWI5Yy0wZTEzNDMxOWI2Y2IiLCJleHAiOjE2MTA1MzY3MTUsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6Ijk3ZGJhZWZkLTMzZGEtNDAzZS1hZDY3LTM2N2RjZjIzZDA2MyIsImNsaWVudF9pZCI6ImNsaWVudF8yIn0.2A7LHt8VcOLeyb7M_-8QXKkhpvzV0F7kljzd6z9qG5I",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiJlNGNkZTEwYy1mZjZkLTQ5MWUtOWI5Yy0wZTEzNDMxOWI2Y2IiLCJleHAiOjE2MTA1MzY3MTUsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6Ijk3ZGJhZWZkLTMzZGEtNDAzZS1hZDY3LTM2N2RjZjIzZDA2MyIsImNsaWVudF9pZCI6ImNsaWVudF8yIn0.2A7LHt8VcOLeyb7M_-8QXKkhpvzV0F7kljzd6z9qG5I"
 								}
 							]
 						}

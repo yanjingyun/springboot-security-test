@@ -40,6 +40,7 @@ OAuth2授权服务器 && OAuth2资源服务器：
 
 相关地址说明：
 1.用户授权(/oauth/authorize):
+	--针对与授权码模式
 	// 浏览器访问该地址时会自动跳转到登录页进行登录授权后得到code
 	http://localhost:8080/oauth/authorize?client_id=client_1&response_type=code
 	说明：
@@ -62,8 +63,8 @@ OAuth2授权服务器 && OAuth2资源服务器：
 		说明：client1-客户端Id，secret-客户端secret，code-步骤1的code
 		http://client1:secret@localhost:8080/oauth/token?code=CxZGdK&grant_type=authorization_code
 3.通过令牌访问资源：
-	http://localhost:8081/getMyResource?access_token={access_token} //方式1
-	方式2：在header里添加Authorization属性，值为bearer {access_token}
+	方式1： 	http://localhost:8081/getMyResource?access_token={access_token}
+	方式2： 	在header里添加Authorization属性，值为bearer {access_token}
 
 
 
