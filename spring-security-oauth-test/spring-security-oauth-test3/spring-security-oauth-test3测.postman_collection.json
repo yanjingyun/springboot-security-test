@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "0b1ad64e-4d24-45d5-824e-eee9be04238c",
+		"name": "spring-security-oauth-test3测",
+		"description": "测试SpringSecurityOAuth2相关",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "授权码模式登录",
+			"item": [
+				{
+					"name": "浏览器获取code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "浏览器输入：http://localhost:8080/oauth/authorize?client_id=client_1&response_type=code",
+							"protocol": "浏览器输入：http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "client_1"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "通过code获取access_token(client_1客户端)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://client_1:secret@localhost:8080/oauth/token?code=9r1pUC&grant_type=authorization_code",
+							"protocol": "http",
+							"auth": {
+								"user": "client_1",
+								"password": "secret"
+							},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "9r1pUC"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/add接口(有token)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/client1/users/add?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzMwNDMsInVzZXJfbmFtZSI6ImFhYSIsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6ImI5NzJjN2QzLWMwNTYtNDhjZC1iMDY2LTQxMjc3MGE3MjU3ZSIsImNsaWVudF9pZCI6ImNsaWVudF8xIiwic2NvcGUiOlsiYWxsIl19.WIyWClii8vQ7efp7Oxduj2m2FPO2VoEASB061K2CvbE",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"add"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzMwNDMsInVzZXJfbmFtZSI6ImFhYSIsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6ImI5NzJjN2QzLWMwNTYtNDhjZC1iMDY2LTQxMjc3MGE3MjU3ZSIsImNsaWVudF9pZCI6ImNsaWVudF8xIiwic2NvcGUiOlsiYWxsIl19.WIyWClii8vQ7efp7Oxduj2m2FPO2VoEASB061K2CvbE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/add接口(token放head中)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzMwNDMsInVzZXJfbmFtZSI6ImFhYSIsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6ImI5NzJjN2QzLWMwNTYtNDhjZC1iMDY2LTQxMjc3MGE3MjU3ZSIsImNsaWVudF9pZCI6ImNsaWVudF8xIiwic2NvcGUiOlsiYWxsIl19.WIyWClii8vQ7efp7Oxduj2m2FPO2VoEASB061K2CvbE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/client1/users/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/info接口(token访问无权限资源)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/client1/users/info?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzMwNDMsInVzZXJfbmFtZSI6ImFhYSIsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6ImI5NzJjN2QzLWMwNTYtNDhjZC1iMDY2LTQxMjc3MGE3MjU3ZSIsImNsaWVudF9pZCI6ImNsaWVudF8xIiwic2NvcGUiOlsiYWxsIl19.WIyWClii8vQ7efp7Oxduj2m2FPO2VoEASB061K2CvbE",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"info"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzMwNDMsInVzZXJfbmFtZSI6ImFhYSIsImF1dGhvcml0aWVzIjpbInVzZXI6YWRkIl0sImp0aSI6ImI5NzJjN2QzLWMwNTYtNDhjZC1iMDY2LTQxMjc3MGE3MjU3ZSIsImNsaWVudF9pZCI6ImNsaWVudF8xIiwic2NvcGUiOlsiYWxsIl19.WIyWClii8vQ7efp7Oxduj2m2FPO2VoEASB061K2CvbE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "密码模式",
+			"item": [
+				{
+					"name": "密码模式获取access_token(client_2客户端)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50XzI6c2VjcmV0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/oauth/token?grant_type=password&username=admin&password=123&scope=all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								},
+								{
+									"key": "scope",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/add接口(无token)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/client1/users/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/add接口(有token)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/client1/users/add?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzM0NzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsidXNlcjphZGQiXSwianRpIjoiODJkZTNkNWItMGY0Mi00YzM2LThlM2YtMTkyMzRiYmI1Y2NiIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJhbGwiXX0.lHihxWiBOQYl98LpVK2n_oBjsp5VytDWenQwvOA3euU",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"add"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzM0NzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsidXNlcjphZGQiXSwianRpIjoiODJkZTNkNWItMGY0Mi00YzM2LThlM2YtMTkyMzRiYmI1Y2NiIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJhbGwiXX0.lHihxWiBOQYl98LpVK2n_oBjsp5VytDWenQwvOA3euU"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/add接口(token放head中)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzM0NzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsidXNlcjphZGQiXSwianRpIjoiODJkZTNkNWItMGY0Mi00YzM2LThlM2YtMTkyMzRiYmI1Y2NiIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJhbGwiXX0.lHihxWiBOQYl98LpVK2n_oBjsp5VytDWenQwvOA3euU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/client1/users/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "访问user/info接口(token访问无权限资源)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/client1/users/info?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzM0NzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsidXNlcjphZGQiXSwianRpIjoiODJkZTNkNWItMGY0Mi00YzM2LThlM2YtMTkyMzRiYmI1Y2NiIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJhbGwiXX0.lHihxWiBOQYl98LpVK2n_oBjsp5VytDWenQwvOA3euU",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"client1",
+								"users",
+								"info"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDk5MzM0NzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsidXNlcjphZGQiXSwianRpIjoiODJkZTNkNWItMGY0Mi00YzM2LThlM2YtMTkyMzRiYmI1Y2NiIiwiY2xpZW50X2lkIjoiY2xpZW50XzIiLCJzY29wZSI6WyJhbGwiXX0.lHihxWiBOQYl98LpVK2n_oBjsp5VytDWenQwvOA3euU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
